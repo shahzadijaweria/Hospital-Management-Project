@@ -1,7 +1,9 @@
-This project is developed in MEAN stack. It has two users. 1) Patients. 2) Doctors
-We can add/delete a doctor or update the doctors list. We can also perform CRUD operations on patients
+
 =======
 # DoctornowDummyProject
+
+This project is developed in MEAN stack. It has two users. 1) Patients. 2) Doctors
+We can add/delete a doctor or update the doctors list. We can also perform CRUD operations on patients
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
 
