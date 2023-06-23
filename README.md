@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# Angular-Dummy-Project
+This project is developed in MEAN stack. It has two users. 1) Patients. 2) Doctors
+We can add/delete a doctor or update the doctors list. We can also perform CRUD operations on patients
 =======
 # DoctornowDummyProject
 
