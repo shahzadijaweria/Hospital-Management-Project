@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <h2 style="text-align: center;">Patient Registration Form</h2>
+    <div class="alert alert-danger" *ngIf="serverErrorMsg"></div>
+
+    {{serverErrorMsg}}
+    <form class="row g-3" #patientForm="ngForm" *ngIf="!submitted" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="col-md-6">
+            <label for="fname" class="form-label">First Name</label>
+            <input type="text" #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched"
+                class="form-control" id="fname" name="fname" [(ngModel)]="patientModel.First_Name" required>
+            <small class="text-danger" [class.d-none]="firstname.valid || firstname.untouched"> First Name is
+                Required</small>
+        </div>
+
+        <div class="col-md-6">
+            <label for="lname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" [(ngModel)]="patientModel.Last_Name">
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
+                class="form-control" id="inputAddress" name="inputAddress" [(ngModel)]="patientModel.Address" required>
+            <small class="text-danger" [class.d-none]="address.valid || address.untouched"> Address is
+                Required</small>
+        </div>
+
+        <div class="col-md-4">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" #phone="ngModel" pattern="^\d{4}-\d{7}$"
+                [class.is-invalid]="phone.invalid && phone.touched" class="form-control" id="phone"
+                placeholder="0321-1111111" name="phone" [(ngModel)]="patientModel.Phone_Number" required>
+            <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+                <small class="text-danger" *ngIf="phone.errors?.['required']"> Phone Number is Required </small>
+                <small class="text-danger" *ngIf="phone.errors?.['pattern']"> Phone Number must follow format as
+                    xxxx-xxxxxxx
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">City</label>
+            <select (blur)="cityValidation(city.value)" (change)="cityValidation(city.value)" class="form-select"
+                #city="ngModel" [class.is-invalid]="hasError && city.touched" aria-label="Default select example"
+                name="city" [(ngModel)]="patientModel.City">
+                <option value="Select City">Select City</option>
+                <option *ngFor="let city of cities"> {{city}} </option>
+            </select>
+            <small [class.d-none]="!hasError || city.untouched" style="color: red;"> City is
+                Required</small>
+        </div>
+
+        <div class="col-md-4">
+            <label for="cnic" class="form-label">cnic</label>
+            <input type="text" #cnic="ngModel" pattern="^\d{5}-\d{7}-\d{1}$"
+                [class.is-invalid]="cnic.invalid && cnic.touched" class="form-control" id="cnic"
+                placeholder="32400-0000000-1" name="cnic" [(ngModel)]="patientModel.Cnic" required>
+            <div *ngIf="cnic.errors && (cnic.invalid || cnic.touched)">
+                <small class="text-danger" *ngIf="cnic.errors?.['required']"> CNIC is Required </small>
+                <small class="text-danger" *ngIf="cnic.errors?.['pattern']"> CNIC must follow format as xxxxx-xxxxxxx-x
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="disease" class="form-label">disease</label>
+            <input type="text" #disease="ngModel" [class.is-invalid]="disease.invalid && disease.touched"
+                class="form-control" id="disease" name="disease" [(ngModel)]="patientModel.Disease" required>
+            <small class="text-danger" [class.d-none]="disease.valid || disease.untouched"> Disease is
+                Required</small>
+        </div>
+
+        <div class="col-md-4">
+            <label for="dob" class="form-label">dob</label>
+            <input type="date" #dob="ngModel" [class.is-invalid]="dob.invalid && dob.touched" class="form-control"
+                id="dob" name="dob" [(ngModel)]="patientModel.Date_of_Birth" required>
+            <small [class.d-none]="dob.valid || dob.untouched" style="color: red;"> DOB is
+                Required</small>
+        </div>
+
+        <div>
+            <label for="isVisited" class="form-label">Are you a regular visiting patient</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                    [(ngModel)]="patientModel.isVisitedBofore" id="flexRadioDefault1" value="yes" required>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Yes
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                    [(ngModel)]="patientModel.isVisitedBofore" id="flexRadioDefault2" value="no" required>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    No
+                </label>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" name="checkbox"
+                    [(ngModel)]="patientModel.infoProvided" required>
+                <label class="form-check-label" for="gridCheck">
+                    I have provided correct information according to best of my knowledge
+                </label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button [disabled]="patientForm.form.invalid || hasError" type="submit"
+                class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    <!-- <hr />
+    {{patientForm.value | json}}
+    <hr />
+    {{patientModel | json}} -->
+</div>

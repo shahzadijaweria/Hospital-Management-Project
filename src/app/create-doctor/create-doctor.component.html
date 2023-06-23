@@ -1,0 +1,166 @@
+<div class="container-fluid">
+    <h2 style="text-align: center;">Doctor Registration Form</h2>
+
+    <form class="mx-auto col-10 col-md-8 col-lg-6" [formGroup]="registrationForm">
+        <div class="form-group">
+            <label> First Name: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched"
+                formControlName="firstName" type="text" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('firstName')?.valid || registrationForm.get('firstName')?.untouched">
+                First Name is Required</small>
+        </div> <br>
+
+        <div class="form-group">
+            <label> Last Name: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched"
+                formControlName="lastName" type="text" class="form-control" style="width: 600px">
+        </div><br>
+
+        <div class="form-group">
+            <label> Username: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched"
+                formControlName="username" type="text" class="form-control" style="width: 600px">
+            <!-- <small class="text-danger"
+        [class.d-none]="registrationForm.get('username')?.valid || registrationForm.get('username')?.untouched">
+        Username is Required</small> -->
+            <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched">
+                <div>
+                    <small class="text-danger" *ngIf="registrationForm.get('username')?.errors?.['required']"> Username
+                        is Required </small>
+                    <small class="text-danger" *ngIf="registrationForm.get('username')?.errors?.['minlength']"> Username
+                        must be at least 3
+                        characters long</small>
+                </div>
+            </div>
+
+        </div><br>
+
+        <div class="form-group">
+            <label> Password: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"
+                formControlName="password" type="password" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('password')?.valid || registrationForm.get('password')?.untouched">
+                Passowrd is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label> Confirm Password: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched"
+                formControlName="confirmPassword" type="password" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('confirmPassword')?.valid || registrationForm.get('confirmPassword')?.untouched">
+                Confirm Password is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label> DOB: </label>
+            <input [class.is-invalid]="registrationForm.get('dob')?.invalid && registrationForm.get('dob')?.touched"
+                formControlName="dob" type="date" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('dob')?.valid || registrationForm.get('dob')?.untouched">
+                DOB is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label> Cnic: </label>
+            <input [class.is-invalid]="registrationForm.get('cnic')?.invalid && registrationForm.get('cnic')?.touched"
+                formControlName="cnic" type="text" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('cnic')?.valid || registrationForm.get('cnic')?.untouched">
+                CNIC is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label> Phone Number: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('phoneNumber')?.invalid && registrationForm.get('phoneNumber')?.touched"
+                formControlName="phoneNumber" type="text" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('phoneNumber')?.valid || registrationForm.get('phoneNumber')?.untouched">
+                Phone Number is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label> Address: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('address')?.invalid && registrationForm.get('address')?.touched"
+                formControlName="address" type="text" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('address')?.valid || registrationForm.get('address')?.untouched">
+                Address is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label for="inputCity" class="form-label">City</label>
+            <select [class.is-invalid]="registrationForm.get('city')?.invalid && registrationForm.get('city')?.touched"
+                formControlName="city" class="form-select" style="width: 600px">
+                <option value="Select City">Select City</option>
+                <option *ngFor="let city of cities"> {{city}} </option>
+            </select>
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('city')?.valid || registrationForm.get('city')?.untouched">
+                City is Required</small>
+        </div><br>
+
+        <div class="form-group">
+            <label> Specialization: </label>
+            <input
+                [class.is-invalid]="registrationForm.get('specialization')?.invalid && registrationForm.get('specialization')?.touched"
+                formControlName="specialization" type="text" class="form-control" style="width: 600px">
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('specialization')?.valid || registrationForm.get('specialization')?.untouched">
+                Specialization is Required</small>
+        </div><br>
+
+
+        <div class="form-group">
+            <label class="form-label">Have you any prior working experience?</label>
+            <div class="form-check">
+                <input
+                    [class.is-invalid]="registrationForm.get('workExperience')?.invalid && registrationForm.get('workExperience')?.touched"
+                    formControlName="workExperience" class="form-check-input" type="radio" name="flexRadioDefault"
+                    id="flexRadioDefault1" value="yes" required>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Yes
+                </label>
+            </div><br>
+
+            <div class="form-check">
+                <input
+                    [class.is-invalid]="registrationForm.get('workExperience')?.invalid && registrationForm.get('workExperience')?.touched"
+                    formControlName="workExperience" class="form-check-input" type="radio" name="flexRadioDefault"
+                    id="flexRadioDefault2" value="no" required>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    No
+                </label>
+            </div>
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('workExperience')?.valid || registrationForm.get('workExperience')?.untouched">
+                Work Experience is Required</small>
+        </div><br>
+
+        <div class="form-check">
+            <input
+                [class.is-invalid]="registrationForm.get('infoProvided')?.invalid && registrationForm.get('infoProvided')?.touched"
+                formControlName="infoProvided" class="form-check-input" type="checkbox" id="gridCheck" name="checkbox"
+                required>
+            <label class="form-check-label" for="gridCheck">
+                I have provided correct information according to best of my knowledge
+            </label>
+            <small class="text-danger"
+                [class.d-none]="registrationForm.get('infoProvided')?.valid || registrationForm.get('infoProvided')?.untouched">
+                Checkbox is Required</small>
+        </div><br>
+
+        <button class="btn btn-primary" type="submit"> Submit </button>
+    </form>
+
+    {{registrationForm.value | json}}
+</div>
